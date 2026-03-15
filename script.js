@@ -97,16 +97,41 @@ students.forEach((student) => {
   const card = document.createElement("div");
   card.classList.add("card");
 
-  const statusColor = student.isGraduated ? "green" : "red";
+  const name = document.createElement("h3")
+name.innerText = student.name
 
-  card.innerHTML = `
-    <h3>${student.name}</h3>
-    <p>Age: ${student.age}</p>
-    <p>City: ${student.city}</p>
-    <p>Grades: ${student.grades.join(", ")}</p>
-    <p>Hobbies: ${student.hobbies.length ? student.hobbies.join(", ") : "None"}</p>
-    <span class="status ${statusColor}"></span>
-  `;
+const age = document.createElement("p")
+age.innerText = "Age: " + student.age
+
+const city = document.createElement("p")
+city.innerText = "City: " + student.city
+
+const grades = document.createElement("p")
+grades.innerText = "Grades: " + student.grades.join(", ")
+
+const hobbies = document.createElement("p")
+
+if (student.hobbies.length > 0) {
+  hobbies.innerText = "Hobbies: " + student.hobbies.join(", ")
+} else {
+  hobbies.innerText = "Hobbies: None"
+}
+
+const status = document.createElement("span")
+status.classList.add("status")
+
+if (student.isGraduated) {
+  status.classList.add("green")
+} else {
+  status.classList.add("red")
+}
+
+card.append(name)
+card.append(age)
+card.append(city)
+card.append(grades)
+card.append(hobbies)
+card.append(status)
 
   container.append(card);
 });
@@ -165,4 +190,5 @@ const graduatedCount = students.filter(
 console.log(graduatedCount);
 
 const reversedStudents = [...students].reverse();
+
 console.log(reversedStudents);
